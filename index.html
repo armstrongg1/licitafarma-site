@@ -3,21 +3,165 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
+<meta name="description" content="Licitafarma: quem escreve, de onde vêm os dados públicos de compras de medicamentos e como sair da lista.">
 <title>Licitafarma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#FCFCFD;color:#12222B;
-       font-family:"Segoe UI",Helvetica,Arial,sans-serif;line-height:1.6}
-  main{max-width:30rem;padding:2rem}
-  h1{font-family:Georgia,"Times New Roman",serif;font-size:1.6rem;margin:0 0 .75rem}
-  p{margin:0;color:#4A5C65}
-  @media (prefers-color-scheme:dark){body{background:#0E171C;color:#E7EDEF}p{color:#9DAEB5}}
+  :root{
+    --ground:#FCFCFD;
+    --surface:#FFFFFF;
+    --ink:#12222B;
+    --ink-soft:#4A5C65;
+    --rule:#DFE4E6;
+    --accent:#2F6B58;
+    --accent-soft:#EDF3F0;
+    --flag:#8A5D14;
+    --flag-soft:#FBF4E7;
+    --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+    --sans:"IBM Plex Sans","Segoe UI",Helvetica,Arial,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --ground:#0E171C;--surface:#141F25;--ink:#E7EDEF;--ink-soft:#9DAEB5;
+      --rule:#25343B;--accent:#6FB79B;--accent-soft:#1A2E28;
+      --flag:#D8A657;--flag-soft:#241D0F;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E171C;--surface:#141F25;--ink:#E7EDEF;--ink-soft:#9DAEB5;
+    --rule:#25343B;--accent:#6FB79B;--accent-soft:#1A2E28;
+    --flag:#D8A657;--flag-soft:#241D0F;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:var(--sans);font-size:17px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:43rem;margin:0 auto;padding:0 1.5rem 5rem}
+  header{border-bottom:1px solid var(--rule);padding:3.5rem 0 2rem;margin-bottom:2.75rem}
+  .mark{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 1.25rem;
+  }
+  h1{
+    font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,5vw,2.6rem);
+    line-height:1.18;margin:0 0 1rem;text-wrap:balance;letter-spacing:-.01em;
+  }
+  .lede{font-size:1.1rem;color:var(--ink-soft);margin:0;max-width:34rem}
+  section{margin-bottom:2.75rem}
+  h2{
+    font-family:var(--sans);font-weight:600;font-size:.78rem;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink-soft);margin:0 0 1rem;
+  }
+  p{margin:0 0 1rem;max-width:36rem}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(9.5rem,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+  .stat{background:var(--surface);padding:1.15rem 1.25rem}
+  .stat b{
+    display:block;font-family:var(--serif);font-size:1.75rem;font-weight:600;
+    line-height:1.1;font-variant-numeric:tabular-nums;
+  }
+  .stat span{display:block;font-size:.83rem;color:var(--ink-soft);margin-top:.35rem;line-height:1.4}
+  ol{margin:0;padding:0;list-style:none;counter-reset:step}
+  ol li{
+    counter-increment:step;position:relative;padding-left:2.4rem;margin-bottom:1.15rem;
+    max-width:35rem;
+  }
+  ol li::before{
+    content:counter(step);position:absolute;left:0;top:.1rem;
+    font-family:var(--mono);font-size:.78rem;color:var(--accent);
+    border:1px solid var(--rule);border-radius:50%;width:1.6rem;height:1.6rem;
+    display:grid;place-items:center;
+  }
+  ul.plain{margin:0;padding:0;list-style:none}
+  ul.plain li{padding-left:1.15rem;position:relative;margin-bottom:.6rem;max-width:35rem}
+  ul.plain li::before{content:"—";position:absolute;left:0;color:var(--accent)}
+  .limits{background:var(--flag-soft);border-left:3px solid var(--flag);padding:1.25rem 1.4rem}
+  .limits h2{color:var(--flag);margin-bottom:.75rem}
+  .limits li::before{color:var(--flag)}
+  .limits li{margin-bottom:.5rem}
+  .prov{border:1px solid var(--rule);background:var(--surface);padding:1.4rem}
+  .prov dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.25rem;font-size:.92rem}
+  .prov dt{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding-top:.2rem}
+  .prov dd{margin:0}
+  a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:3px}
+  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+  footer{border-top:1px solid var(--rule);padding-top:1.75rem;font-size:.87rem;color:var(--ink-soft)}
+  footer p{margin-bottom:.5rem}
+  .url{font-family:var(--mono);font-size:.82em;overflow-wrap:anywhere;color:var(--ink-soft)}
+  .ph{font-family:var(--mono);font-size:.85em;background:var(--accent-soft);padding:.1em .35em;border-radius:2px;color:var(--ink-soft)}
 </style>
 </head>
 <body>
-<main>
-  <h1>Licitafarma</h1>
-  <p>Página em preparação.</p>
-</main>
+<div class="wrap">
+  <header>
+    <p class="mark">Dados públicos de compras de medicamentos</p>
+    <h1>Quem escreveu para a sua empresa, e de onde saíram os dados</h1>
+    <p class="lede">Licitafarma é um projeto em fase de teste, tocado por uma pessoa. Organiza informação pública sobre compras de medicamentos — atas de registro de preços, planos de contratação e listas de preço — para distribuidoras que vendem ao setor público.</p>
+  </header>
+
+  <section>
+    <h2>Quem é</h2>
+    <p><strong>Geraldo Kleber de Oliveira Brito</strong>, de Belo Horizonte/MG.</p>
+    <p>Sou pessoa física. O projeto ainda não tem CNPJ: se virar um serviço pago, a empresa será aberta antes de qualquer cobrança, e a nota fiscal sairá no nome dela.</p>
+  </section>
+
+  <section>
+    <h2>Se você recebeu uma mensagem minha</h2>
+    <ul class="plain">
+      <li>Ela cita um fato sobre a sua empresa — uma ata, um órgão, uma data — tirado de fonte oficial, com o endereço para você conferir.</li>
+      <li>Ela faz uma pergunta sobre como vocês trabalham hoje. É o que eu mais quero saber.</li>
+      <li>Estou testando se um relatório desse tipo vira um serviço pago. A página de amostra que ofereço é gratuita e não gera compromisso.</li>
+      <li>Não comprei lista. O endereço para onde escrevi está publicado no site da sua empresa ou em documento público de licitação.</li>
+      <li>Mensagem minha nunca leva anexo no primeiro contato e nunca pede senha, cadastro, dado bancário ou pagamento.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>De onde vêm os dados</h2>
+    <div class="prov">
+      <dl>
+        <dt>Atas e itens</dt><dd>Compras.gov.br, dados abertos, e Portal Nacional de Contratações Públicas<br><span class="url">dadosabertos.compras.gov.br · pncp.gov.br</span></dd>
+        <dt>Plano anual</dt><dd>Plano de Contratações Anual publicado pelos órgãos (Lei 14.133/2021)<br><span class="url">dadosabertos.compras.gov.br · pncp.gov.br/app/pca</span></dd>
+        <dt>Preços máximos</dt><dd>Listas de preços da CMED, publicadas pela ANVISA<br><span class="url">gov.br/anvisa/pt-br/assuntos/medicamentos/cmed/precos</span></dd>
+        <dt>Registros</dt><dd>Registro de medicamentos, dados abertos da ANVISA<br><span class="url">dados.anvisa.gov.br</span></dd>
+        <dt>Contas públicas</dt><dd>Tesouro Nacional: relatórios fiscais que cada estado e município declara<br><span class="url">siconfi.tesouro.gov.br · tesourotransparente.gov.br</span></dd>
+        <dt>Sanções</dt><dd>Cadastro de Empresas Inidôneas e Suspensas<br><span class="url">portaldatransparencia.gov.br/sancoes</span></dd>
+      </dl>
+    </div>
+  </section>
+
+  <section>
+    <h2>Como conferir</h2>
+    <p>Todo número que eu cito vem acompanhado do endereço oficial e da data em que foi consultado. Se um número meu não bater com a fonte, o erro é meu: me avise e eu corrijo e reenvio.</p>
+    <p>Quando o dado público não permite afirmar alguma coisa, eu escrevo que não dá para afirmar. Não preencho lacuna com estimativa.</p>
+  </section>
+
+  <section class="limits">
+    <h2>O que isto não é</h2>
+    <ul class="plain">
+      <li>Não é parecer jurídico, tributário, regulatório nem contábil.</li>
+      <li>Não é nota de crédito nem avaliação de órgão público: quando mostro contas de um município, são os números que ele mesmo declarou ao Tesouro.</li>
+      <li>Não recomenda preço nem lance, e não participa de licitação por ninguém.</li>
+      <li>Dado público pode estar atrasado ou errado na origem — ata cancelada, unidade de fornecimento trocada, classificação incompleta. Confira na fonte antes de decidir.</li>
+      <li>Projeto independente, sem vínculo com ANVISA, CMED, Tesouro, PNCP ou qualquer órgão.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Seus dados</h2>
+    <p>Uso apenas nome, cargo e e-mail profissional publicados, e só para esse contato. A base é o legítimo interesse (LGPD, art. 7º, IX). Não copio CPF nem dado pessoal de documento público.</p>
+    <p><strong>Para sair:</strong> responda “sair” a qualquer mensagem. Eu paro em todos os canais e apago seus dados. O mesmo endereço atende qualquer pedido sobre os seus dados (LGPD, art. 18). Quem não responde é apagado 90 dias depois do fim do teste.</p>
+  </section>
+
+  <footer>
+    <p><strong>Contato:</strong> <a href="mailto:contato@licitafarma.com.br">contato@licitafarma.com.br</a></p>
+    <p>Contém informações do Tesouro Nacional (SICONFI e Tesouro Transparente), disponibilizadas sob a Open Database License (ODbL). As demais fontes são dados públicos federais (Decreto 8.777/2016).</p>
+    <p>Atualizado em 20/09/2026.</p>
+  </footer>
+</div>
 </body>
 </html>
