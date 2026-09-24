@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Licitafarma: vencimento das atas de medicamentos da sua distribuidora</title>
+<title>Privacidade e dados pessoais | Licitafarma</title>
 <meta name="description" content="Relatório das atas de registro de preços de medicamentos do seu CNPJ: órgão, itens e data de término, a partir dos portais oficiais. Amostra grátis.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,6 +110,11 @@
     ol.steps li:not(:last-child)::after{display:none}
     .price{grid-template-columns:1fr;padding:2rem 1.5rem}
   }
+
+  .doc{max-width:44rem;padding:2rem 0 4rem}
+  .doc h1{font-size:2rem;letter-spacing:-.02em;margin:1rem 0 1.5rem}
+  .doc h2{font-size:1.15rem;margin:2rem 0 .5rem}
+  .doc p,.doc li{color:var(--ink-soft)}
 </style>
 </head>
 <body>
@@ -119,129 +124,29 @@
       <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="7" fill="#136A5F"/><rect x="7" y="9" width="16" height="3" rx="1.5" fill="#fff"/><rect x="7" y="14" width="11" height="3" rx="1.5" fill="#fff"/><rect x="7" y="19" width="6" height="3" rx="1.5" fill="#E0A526"/></svg>
       Licitafarma
     </a>
-    <nav class="top" aria-label="Principal">
-      <a href="#relatorio">O relatório</a>
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#preco">Preço</a>
-      <a class="contact" href="mailto:contato@licitafarma.com.br">Contato</a>
-    </nav>
+    <nav class="top" aria-label="Principal"><a class="contact" href="mailto:contato@licitafarma.com.br">Contato</a></nav>
   </header>
+  <main class="doc">
+    <h1>Privacidade e dados pessoais</h1>
+    <p>Esta página explica como a Licitafarma usa dados pessoais, conforme a Lei Geral de Proteção de Dados (Lei 13.709/2018).</p>
 
-  <main>
-    <section class="hero">
-      <div>
-        <h1>Saiba quais atas da sua distribuidora vencem nos próximos meses.</h1>
-        <p class="lede">Reunimos as atas de registro de preços de medicamentos que estão no seu CNPJ, com órgão, itens e data de término, direto dos portais oficiais de compras. Assim o comercial se prepara para o próximo pregão antes de ele ser publicado.</p>
-        <div class="actions">
-          <a class="btn" href="mailto:contato@licitafarma.com.br?subject=Amostra%20gr%C3%A1tis&amp;body=CNPJ%20da%20empresa%3A%20">Pedir amostra grátis</a>
-          <a class="link" href="#relatorio">Ver o que vem no relatório</a>
-        </div>
-        <p class="note">Só precisamos do CNPJ. Nenhuma senha, nenhum acesso a sistema.</p>
-      </div>
+    <h2>Quem é o responsável</h2>
+    <p>Armstrong Brito, Belo Horizonte, MG. Contato: <a href="mailto:contato@licitafarma.com.br">contato@licitafarma.com.br</a>.</p>
 
-      <div class="ruler" role="figure" aria-label="Exemplo de relatório com cinco atas ordenadas pela data de término">
-        <div class="ruler-head"><strong>Próximos vencimentos</strong><span>exemplo com dados ilustrativos</span></div>
-        <div class="row soon">
-          <div><div class="org">Secretaria Municipal de Saúde</div><div class="meta">Ata 00412/2025, 2 itens</div></div>
-          <div><div class="when">14/10</div><div class="days">em 21 dias</div></div>
-          <div class="bar"><i style="width:18%"></i></div>
-        </div>
-        <div class="row soon">
-          <div><div class="org">Hospital das Clínicas</div><div class="meta">Ata 90231/2025, 1 item</div></div>
-          <div><div class="when">22/10</div><div class="days">em 29 dias</div></div>
-          <div class="bar"><i style="width:25%"></i></div>
-        </div>
-        <div class="row">
-          <div><div class="org">Secretaria Estadual de Saúde</div><div class="meta">Ata 00078/2025, 4 itens</div></div>
-          <div><div class="when">06/11</div><div class="days">em 44 dias</div></div>
-          <div class="bar"><i style="width:38%"></i></div>
-        </div>
-        <div class="row">
-          <div><div class="org">Consórcio Intermunicipal de Saúde</div><div class="meta">Ata 00155/2025, 3 itens</div></div>
-          <div><div class="when">18/11</div><div class="days">em 56 dias</div></div>
-          <div class="bar"><i style="width:49%"></i></div>
-        </div>
-        <div class="row">
-          <div><div class="org">Hospital Universitário</div><div class="meta">Ata 00967/2025, 1 item</div></div>
-          <div><div class="when">09/12</div><div class="days">em 77 dias</div></div>
-          <div class="bar"><i style="width:67%"></i></div>
-        </div>
-      </div>
-    </section>
+    <h2>Quais dados usamos</h2>
+    <p>Nome, cargo e e-mail profissional publicados no site da empresa ou em documento público de licitação, apenas para contato comercial sobre o serviço. Não copiamos CPF nem outros dados pessoais de documentos públicos e não compramos listas de contatos.</p>
 
-    <section class="band" id="relatorio">
-      <h2>O que vem no relatório</h2>
-      <p class="intro">Uma visão da carteira pública da sua empresa, pronta para a reunião do comercial.</p>
-      <div class="gets">
-        <div>
-          <h3>Todas as atas vigentes no seu CNPJ</h3>
-          <p>Número da ata, órgão comprador, itens, quantidade e valor registrado, com a data de término conferida ata por ata, inclusive prorrogações.</p>
-        </div>
-        <div>
-          <h3>O que vence primeiro</h3>
-          <p>A lista ordenada pela data de término, para saber onde a disputa volta a abrir e em que ordem.</p>
-        </div>
-        <div>
-          <h3>Onde você já vende</h3>
-          <p>Órgãos e estados da sua carteira, com o valor registrado em cada um. Útil para enxergar concentração e onde crescer.</p>
-        </div>
-        <div>
-          <h3>O link oficial de cada ata</h3>
-          <p>Cada linha aponta para a ata no Portal Nacional de Contratações Públicas, para qualquer pessoa da equipe conferir em um clique.</p>
-        </div>
-      </div>
-      <div class="sources" aria-label="Fontes dos dados">
-        <span>Compras.gov.br</span><span>PNCP</span><span>ANVISA</span>
-      </div>
-    </section>
+    <h2>Base legal</h2>
+    <p>Legítimo interesse (art. 7º, IX, da LGPD), para oferecer a empresas que vendem ao setor público um serviço relacionado à atividade delas.</p>
 
-    <section class="band" id="como-funciona">
-      <h2>Como funciona</h2>
-      <p class="intro">Sem cadastro e sem contrato de assinatura.</p>
-      <ol class="steps">
-        <li><h3>Você manda o CNPJ</h3><p>Por e-mail, para contato@licitafarma.com.br.</p></li>
-        <li><h3>Recebe a amostra grátis</h3><p>Em até 1 dia útil, as 5 atas do seu CNPJ que vencem primeiro.</p></li>
-        <li><h3>Pede o relatório completo, se servir</h3><p>A carteira inteira, entregue por e-mail em planilha e PDF.</p></li>
-      </ol>
-    </section>
+    <h2>Seus direitos</h2>
+    <p>Para não receber mais mensagens, responda "sair" a qualquer e-mail: o contato é interrompido e seus dados são apagados. Pelo mesmo endereço você pode pedir acesso, correção ou exclusão dos seus dados (art. 18 da LGPD). Contatos que não respondem são apagados 90 dias depois da última mensagem.</p>
 
-    <section class="band" id="preco">
-      <div class="price">
-        <div class="amount">R$ 490<small>por relatório de um CNPJ</small></div>
-        <div>
-          <ul>
-            <li>A amostra com as 5 próximas atas é grátis.</li>
-            <li>Pagamento antes da entrega do relatório completo.</li>
-            <li>Se o relatório não servir, devolvemos o valor em até 7 dias.</li>
-          </ul>
-          <a class="btn" href="mailto:contato@licitafarma.com.br?subject=Amostra%20gr%C3%A1tis&amp;body=CNPJ%20da%20empresa%3A%20">Pedir amostra grátis</a>
-        </div>
-      </div>
-    </section>
+    <h2>Sobre os dados dos relatórios</h2>
+    <p>Os relatórios usam informações públicas de compras governamentais (Compras.gov.br e PNCP) e dados abertos da ANVISA. Contém informações do Tesouro Nacional disponibilizadas sob a Open Database License (ODbL). Os relatórios não são parecer jurídico, tributário ou regulatório, e dados públicos podem conter erros na origem: confira na fonte antes de decidir.</p>
 
-    <section class="band faq" aria-labelledby="faq-titulo">
-      <h2 id="faq-titulo">Perguntas frequentes</h2>
-      <details><summary>De onde vêm os dados?</summary><p>Dos portais oficiais: Compras.gov.br e Portal Nacional de Contratações Públicas (PNCP), além dos dados abertos da ANVISA. São informações públicas, conferidas antes de irem para o relatório.</p></details>
-      <details><summary>Preciso dar alguma senha ou acesso?</summary><p>Não. Só o CNPJ da empresa.</p></details>
-      <details><summary>Isso substitui o sistema de licitações que já usamos?</summary><p>Não. É um relatório avulso sobre as atas que a sua empresa já tem, sem assinatura mensal.</p></details>
-      <details><summary>Recebi um e-mail da Licitafarma. De onde veio o meu contato?</summary><p>Do site da sua empresa ou de documento público de licitação. Não compramos listas. Para não receber mais mensagens, responda "sair" a qualquer e-mail nosso.</p></details>
-    </section>
+    <p style="margin-top:2.5rem"><a href="/">Voltar ao início</a></p>
   </main>
 </div>
-
-<footer>
-  <div class="wrap cols">
-    <div>
-      <p><strong>Licitafarma</strong></p>
-      <p>Belo Horizonte, MG</p>
-      <p><a href="mailto:contato@licitafarma.com.br">contato@licitafarma.com.br</a></p>
-    </div>
-    <div>
-      <p>Responsável: Armstrong Brito</p>
-      <p><a href="/privacidade.html">Privacidade e dados pessoais</a></p>
-      <p>Serviço independente, sem vínculo com órgãos públicos.</p>
-    </div>
-  </div>
-</footer>
 </body>
 </html>
