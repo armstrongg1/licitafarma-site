@@ -3,120 +3,173 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Licitafarma: vencimento das atas de medicamentos da sua distribuidora</title>
-<meta name="description" content="Relatório das atas de registro de preços de medicamentos do seu CNPJ: órgão, itens e data de término, a partir dos portais oficiais. Amostra grátis.">
+<title>Licitafarma: onde vender os remédios que sua distribuidora já tem em ata</title>
+<meta name="description" content="Relatório do seu CNPJ com pregões abertos, adesão às suas atas, preço comparado às compras públicas e compras previstas pelos órgãos. Dados públicos conferidos na fonte. Amostra grátis.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
 <style>
   :root{
-    --ink:#0F2F36;
-    --ink-soft:#4F6368;
-    --paper:#F5F7F6;
+    --ink:#122B2F;
+    --ink-soft:#4C5F63;
+    --ink-faint:#748588;
+    --paper:#F7F8F7;
     --surface:#FFFFFF;
-    --rule:#D5DDDB;
+    --rule:#DCE2E0;
+    --rule-strong:#B9C6C3;
     --teal:#136A5F;
-    --teal-deep:#0C4A42;
-    --amber:#C98A12;
-    --amber-soft:#FBF1DC;
+    --teal-deep:#0D4D45;
+    --teal-tint:#E8F1EF;
+    --amber:#B57A12;
+    --amber-ink:#7E5208;
+    --serif:"Source Serif 4","Iowan Old Style",Georgia,serif;
     --font:"Schibsted Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font);font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
   a{color:var(--teal)}
-  a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:4px}
-  .wrap{max-width:70rem;margin:0 auto;padding:0 1.5rem}
+  a:focus-visible,summary:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:72rem;margin:0 auto;padding:0 1.5rem}
 
-  header.top{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 0}
-  .brand{display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:1.15rem;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+  /* topo */
+  .topline{height:4px;background:var(--teal)}
+  header.top{display:flex;align-items:center;justify-content:space-between;padding:1.4rem 0;border-bottom:1px solid var(--rule)}
+  .brand{display:flex;align-items:center;gap:.65rem;font-weight:600;font-size:1.12rem;color:var(--ink);text-decoration:none;letter-spacing:-.005em}
   .brand svg{flex:none}
-  nav.top a{color:var(--ink-soft);text-decoration:none;font-size:.95rem;margin-left:1.5rem}
+  nav.top a{color:var(--ink-soft);text-decoration:none;font-size:.93rem;margin-left:1.75rem}
   nav.top a:hover{color:var(--ink)}
+  nav.top a.contact{color:var(--teal);font-weight:600}
   @media (max-width:640px){nav.top a:not(.contact){display:none}}
 
-  .hero{display:grid;grid-template-columns:1.05fr 1fr;gap:3.5rem;align-items:center;padding:3.5rem 0 5rem}
-  .hero h1{font-size:clamp(2.1rem,4.4vw,3.35rem);line-height:1.08;letter-spacing:-.025em;font-weight:700;margin:0 0 1.25rem;max-width:16ch}
-  .hero p.lede{font-size:1.15rem;color:var(--ink-soft);max-width:34rem;margin:0 0 2rem}
-  .actions{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;align-items:center}
-  .btn{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:600;padding:.9rem 1.4rem;border-radius:6px;transition:background .15s}
+  /* abertura */
+  .hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:4rem;align-items:center;padding:4.5rem 0 5rem}
+  .hero h1{font-family:var(--serif);font-size:clamp(2.15rem,4.3vw,3.3rem);line-height:1.1;letter-spacing:-.015em;font-weight:600;margin:0 0 1.4rem;max-width:17ch}
+  .hero p.lede{font-size:1.12rem;color:var(--ink-soft);max-width:33rem;margin:0 0 2.2rem}
+  .actions{display:flex;flex-wrap:wrap;gap:.9rem 1.75rem;align-items:center}
+  .btn{display:inline-block;background:var(--teal);color:#fff;text-decoration:none;font-weight:600;font-size:.98rem;padding:.85rem 1.45rem;border-radius:3px;transition:background .15s}
   .btn:hover{background:var(--teal-deep)}
-  .link{font-weight:600;text-decoration-thickness:1px;text-underline-offset:4px}
-  .note{font-size:.9rem;color:var(--ink-soft);margin-top:1rem}
+  .btn:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+  .link{font-weight:600;font-size:.98rem;text-decoration-thickness:1px;text-underline-offset:5px}
+  .note{font-size:.88rem;color:var(--ink-faint);margin-top:1.1rem}
 
-  /* A peça central: a régua de vencimentos */
-  .ruler{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:1.4rem 1.4rem .6rem}
-  .ruler-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:1rem}
-  .ruler-head strong{font-size:1rem}
-  .ruler-head span{font-size:.8rem;color:var(--ink-soft)}
-  .row{display:grid;grid-template-columns:1fr auto;gap:.2rem 1rem;padding:.85rem 0;border-top:1px solid var(--rule)}
-  .row .org{font-weight:600;font-size:.98rem}
-  .row .meta{font-size:.85rem;color:var(--ink-soft)}
-  .row .when{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;font-size:.95rem}
-  .row .days{text-align:right;font-size:.8rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
-  .bar{grid-column:1 / -1;height:6px;background:#EDF1F0;border-radius:3px;overflow:hidden;margin-top:.35rem}
-  .bar i{display:block;height:100%;background:var(--teal);border-radius:3px;transform-origin:left;animation:grow .9s cubic-bezier(.2,.7,.2,1) both}
+  /* peça central: um trecho do relatório */
+  .sheet{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--teal);box-shadow:0 1px 0 var(--rule),0 18px 40px -28px rgba(18,43,47,.35);padding:1.5rem 1.6rem .75rem}
+  .sheet-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.25rem 1rem;padding-bottom:.9rem;border-bottom:1px solid var(--ink)}
+  .sheet-head strong{white-space:nowrap;font-family:var(--serif);font-weight:600;font-size:1.12rem}
+  .sheet-head span{font-size:.78rem;color:var(--ink-faint)}
+  .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.15rem 1.25rem;padding:.95rem 0;border-bottom:1px solid var(--rule)}
+  .row:last-child{border-bottom:0}
+  .row .org{font-weight:600;font-size:.97rem}
+  .row .meta{font-size:.84rem;color:var(--ink-soft)}
+  .row .when{text-align:right;font-variant-numeric:tabular-nums lining-nums;font-weight:600;font-size:.97rem}
+  .row .days{text-align:right;font-size:.78rem;color:var(--ink-faint)}
+  .bar{grid-column:1 / -1;height:3px;background:#EDF1F0;overflow:hidden;margin-top:.5rem}
+  .bar i{display:block;height:100%;background:var(--teal);transform-origin:left;animation:grow .9s cubic-bezier(.2,.7,.2,1) both}
   .row.soon .bar i{background:var(--amber)}
-  .row.soon .days{color:#8A5B00;font-weight:600}
-  .row:nth-of-type(2) .bar i{animation-delay:.05s}.row:nth-of-type(3) .bar i{animation-delay:.12s}
-  .row:nth-of-type(4) .bar i{animation-delay:.19s}.row:nth-of-type(5) .bar i{animation-delay:.26s}
+  .row.soon .days{color:var(--amber-ink);font-weight:600}
+  .row:nth-of-type(2) .bar i{animation-delay:.06s}.row:nth-of-type(3) .bar i{animation-delay:.12s}.row:nth-of-type(4) .bar i{animation-delay:.18s}
   @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
   @media (prefers-reduced-motion:reduce){.bar i{animation:none}}
 
-  section.band{padding:4.5rem 0;border-top:1px solid var(--rule)}
-  section.band h2{font-size:clamp(1.6rem,2.8vw,2.1rem);letter-spacing:-.02em;line-height:1.15;margin:0 0 .75rem;max-width:24ch}
-  section.band .intro{color:var(--ink-soft);max-width:38rem;margin:0 0 2.5rem}
+  /* fontes */
+  .sources{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 2rem;padding:1.15rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-size:.92rem;color:var(--ink-soft)}
+  .sources b{font-weight:600;color:var(--ink);margin-right:.25rem}
+  .sources span{font-weight:600;color:var(--ink)}
 
-  .gets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 3.5rem}
-  .gets h3{font-size:1.1rem;margin:0 0 .35rem}
-  .gets p{margin:0;color:var(--ink-soft);max-width:30rem}
+  /* seções */
+  section.band{padding:5rem 0;border-top:1px solid var(--rule)}
+  section.band.first{border-top:0}
+  .split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.4fr);gap:2rem 4rem}
+  .split > header h2, section.band h2{font-family:var(--serif);font-weight:600;font-size:clamp(1.65rem,2.6vw,2.05rem);letter-spacing:-.01em;line-height:1.15;margin:0 0 .8rem;max-width:20ch}
+  section.band .intro{color:var(--ink-soft);max-width:38rem;margin:0}
+  .split > header .intro{font-size:1rem}
+  .more{margin:2.25rem 0 0;font-weight:600}
+  .more a{text-decoration-thickness:1px;text-underline-offset:5px}
 
-  ol.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem}
-  ol.steps li{counter-increment:s;position:relative;padding-top:3.1rem}
-  ol.steps li::before{content:counter(s);position:absolute;top:0;left:0;width:2.2rem;height:2.2rem;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:700}
-  ol.steps li:not(:last-child)::after{content:"";position:absolute;top:1.1rem;left:2.9rem;right:-1.4rem;height:2px;background:var(--rule)}
-  ol.steps h3{font-size:1.1rem;margin:0 0 .35rem}
-  ol.steps p{margin:0;color:var(--ink-soft)}
+  .gets{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 3rem}
+  .gets > div{border-top:1px solid var(--rule-strong);padding:1.25rem 0 1.9rem}
+  .gets h3{font-size:1.05rem;font-weight:600;margin:0 0 .4rem}
+  .gets p{margin:0;color:var(--ink-soft);font-size:.98rem;max-width:30rem}
 
-  .price{display:grid;grid-template-columns:auto 1fr;gap:1rem 3rem;align-items:start;background:var(--ink);color:#fff;border-radius:12px;padding:2.5rem}
-  .price .amount{font-size:clamp(2.6rem,6vw,3.6rem);font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
-  .price .amount small{display:block;font-size:.95rem;font-weight:500;letter-spacing:0;color:#B9CBC8;margin-top:.5rem}
-  .price ul{margin:0;padding:0;list-style:none}
-  .price li{padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.14);color:#E4ECEA}
-  .price li:last-child{border-bottom:0}
-  .price .btn{background:#fff;color:var(--ink);margin-top:1.25rem}
-  .price .btn:hover{background:#E4ECEA}
+  ol.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 2.5rem;counter-reset:s}
+  ol.steps li{counter-increment:s;border-top:2px solid var(--ink);padding-top:1.1rem}
+  ol.steps li::before{content:counter(s);display:block;font-family:var(--serif);font-size:2.1rem;line-height:1;color:var(--teal);margin-bottom:.9rem;font-variant-numeric:lining-nums}
+  ol.steps h3{font-size:1.05rem;font-weight:600;margin:0 0 .4rem}
+  ol.steps p{margin:0;color:var(--ink-soft);font-size:.98rem}
 
-  .faq .qa{max-width:46rem}
-  .faq details{border-top:1px solid var(--rule);padding:1rem 0}
-  .faq details:last-child{border-bottom:1px solid var(--rule)}
+  .price{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.4fr);gap:1.5rem 4rem;align-items:start;background:var(--teal-deep);color:#fff;padding:3rem}
+  .price .amount{font-family:var(--serif);font-size:clamp(2.8rem,6vw,3.8rem);font-weight:600;letter-spacing:-.02em;line-height:1;font-variant-numeric:lining-nums}
+  .price .amount small{display:block;font-family:var(--font);font-size:.95rem;font-weight:400;letter-spacing:0;color:#BFD6D2;margin-top:.7rem}
+  .price ul{margin:0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.22)}
+  .price li{padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.22);color:#E6EFED}
+  .price .btn{background:#fff;color:var(--teal-deep);margin-top:1.6rem}
+  .price .btn:hover{background:#E6EFED}
+  .price .btn:focus-visible{outline-color:#fff}
+
+  .faq details{border-top:1px solid var(--rule-strong);padding:1.05rem 0}
+  .faq details:last-child{border-bottom:1px solid var(--rule-strong)}
   .faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:1rem}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:"+";color:var(--teal);font-weight:700}
-  .faq details[open] summary::after{content:"–"}
-  .faq details p{margin:.6rem 0 0;color:var(--ink-soft)}
+  .faq summary::after{content:"+";color:var(--teal);font-weight:500;font-size:1.2rem;line-height:1.3}
+  .faq details[open] summary::after{content:"\2212"}
+  .faq details p{margin:.6rem 0 0;color:var(--ink-soft);max-width:44rem}
 
-  .sources{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem}
-  .sources span{border:1px solid var(--rule);background:var(--surface);border-radius:999px;padding:.35rem .9rem;font-size:.9rem}
-
-  footer{border-top:1px solid var(--rule);padding:2.5rem 0 3rem;font-size:.9rem;color:var(--ink-soft)}
+  footer{background:var(--ink);color:#B7C5C3;padding:2.75rem 0 3rem;font-size:.9rem}
   footer .cols{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.5rem}
   footer p{margin:.2rem 0}
+  footer strong{color:#fff;font-weight:600}
+  footer a{color:#fff}
+  footer a:focus-visible{outline-color:#fff}
 
   @media (max-width:880px){
-    .hero{grid-template-columns:1fr;gap:2.5rem;padding-top:2rem}
+    .hero{grid-template-columns:1fr;gap:2.75rem;padding:2.75rem 0 3.5rem}
+    .split,.price{grid-template-columns:1fr}
     .gets{grid-template-columns:1fr}
-    ol.steps{grid-template-columns:1fr}
-    ol.steps li:not(:last-child)::after{display:none}
-    .price{grid-template-columns:1fr;padding:2rem 1.5rem}
+    ol.steps{grid-template-columns:1fr;gap:2rem}
+    section.band{padding:3.5rem 0}
+    .price{padding:2.25rem 1.5rem}
+    .sheet{padding:1.25rem 1.1rem .5rem}
+    .sources{gap:.4rem 1.5rem}
+    .sources b{flex-basis:100%}
   }
+
+  /* ajustes de QA (monitores, tablets e celular), 07/10 */
+  :root{--ink-faint:#5E6F72}
+  ol.steps p{overflow-wrap:anywhere;max-width:38rem}
+  .price ul{max-width:40rem}
+  @media (max-width:1100px){#como-funciona.split{grid-template-columns:1fr}}
+  @media (min-width:2000px){html{font-size:112.5%}}
+  @media (min-width:2400px){html{font-size:125%}}
+  .row > div:first-child{min-width:0;overflow-wrap:anywhere;hyphens:auto}
+  @media (max-width:400px){
+    .row{grid-template-columns:1fr}
+    .row > div:nth-child(2){display:flex;gap:.5rem;align-items:baseline;order:-1}
+    .row .when,.row .days{text-align:left}
+  }
+  .faq details{padding:0}
+  .faq summary{padding:1.05rem 0;min-height:44px;align-items:flex-start}
+  .faq details p{margin:0 0 1.05rem}
+  nav.top a{display:inline-block;padding:.7rem 0}
+  .link{display:inline-block;padding:.6rem 0}
+  footer a{display:inline-block;padding:.45rem 0}
+  @media (max-width:640px){
+    .row .meta{font-size:.94rem}
+    .row .days,.sheet-head span,.note,footer,.sources{font-size:.94rem}
+  }
+  .price .amount small{line-height:1.4}
+  nav.top{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:0 1.5rem}
+  nav.top a{margin-left:0}
+  header.top{gap:1rem}
+  @media (max-width:720px){nav.top a:not(.contact){display:none}}
 </style>
 </head>
 <body>
+<div class="topline" aria-hidden="true"></div>
 <div class="wrap">
   <header class="top">
     <a class="brand" href="/" aria-label="Licitafarma, início">
-      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="7" fill="#136A5F"/><rect x="7" y="9" width="16" height="3" rx="1.5" fill="#fff"/><rect x="7" y="14" width="11" height="3" rx="1.5" fill="#fff"/><rect x="7" y="19" width="6" height="3" rx="1.5" fill="#E0A526"/></svg>
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="3" fill="#136A5F"/><rect x="7" y="9" width="16" height="2.4" fill="#fff"/><rect x="7" y="14" width="11" height="2.4" fill="#fff"/><rect x="7" y="19" width="6" height="2.4" fill="#E0A526"/></svg>
       Licitafarma
     </a>
     <nav class="top" aria-label="Principal">
@@ -130,108 +183,115 @@
   <main>
     <section class="hero">
       <div>
-        <h1>Saiba quais atas da sua distribuidora vencem nos próximos meses.</h1>
-        <p class="lede">Reunimos as atas de registro de preços de medicamentos que estão no seu CNPJ, com órgão, itens e data de término, direto dos portais oficiais de compras. Assim o comercial se prepara para o próximo pregão antes de ele ser publicado.</p>
+        <h1>Onde vender os remédios que sua distribuidora já tem em ata.</h1>
+        <p class="lede">Cruzamos as atas do seu CNPJ com os pregões abertos, as compras de outros órgãos e os planos de compras publicados. Tudo vem de dados públicos e é conferido na fonte antes de entrar no relatório.</p>
         <div class="actions">
           <a class="btn" href="mailto:contato@licitafarma.com.br?subject=Amostra%20gr%C3%A1tis&amp;body=CNPJ%20da%20empresa%3A%20">Pedir amostra grátis</a>
-          <a class="link" href="#relatorio">Ver o que vem no relatório</a>
+          <a class="link" href="relatorio-exemplo.pdf" target="_blank" rel="noopener">Ver um relatório de exemplo (PDF)</a>
         </div>
         <p class="note">Só precisamos do CNPJ. Nenhuma senha, nenhum acesso a sistema.</p>
       </div>
 
-      <div class="ruler" role="figure" aria-label="Exemplo de relatório com cinco atas ordenadas pela data de término">
-        <div class="ruler-head"><strong>Próximos vencimentos</strong><span>exemplo com dados ilustrativos</span></div>
+      <div class="sheet" role="figure" aria-label="Exemplo com dados fictícios de itens de pregões abertos comparados ao preço da ata">
+        <div class="sheet-head"><strong>Pregões em aberto</strong><span>exemplo com dados fictícios</span></div>
         <div class="row soon">
-          <div><div class="org">Secretaria Municipal de Saúde</div><div class="meta">Ata 00412/2025, 2 itens</div></div>
-          <div><div class="when">14/10</div><div class="days">em 21 dias</div></div>
-          <div class="bar"><i style="width:18%"></i></div>
+          <div><div class="org">Consórcio de Saúde (exemplo)</div><div class="meta">Dipirona 500 mg · estimado R$&nbsp;0,12 · sua ata R$&nbsp;0,10</div></div>
+          <div><div class="when">20/10</div><div class="days">prazo</div></div>
+          <div class="bar"><i style="width:30%"></i></div>
         </div>
         <div class="row soon">
-          <div><div class="org">Hospital das Clínicas</div><div class="meta">Ata 90231/2025, 1 item</div></div>
-          <div><div class="when">22/10</div><div class="days">em 29 dias</div></div>
-          <div class="bar"><i style="width:25%"></i></div>
+          <div><div class="org">Prefeitura (exemplo)</div><div class="meta">Ceftriaxona 1 g · estimado R$&nbsp;6,50 · sua ata R$&nbsp;5,90</div></div>
+          <div><div class="when">23/10</div><div class="days">prazo</div></div>
+          <div class="bar"><i style="width:42%"></i></div>
         </div>
         <div class="row">
-          <div><div class="org">Secretaria Estadual de Saúde</div><div class="meta">Ata 00078/2025, 4 itens</div></div>
-          <div><div class="when">06/11</div><div class="days">em 44 dias</div></div>
-          <div class="bar"><i style="width:38%"></i></div>
+          <div><div class="org">Hospital universitário (exemplo)</div><div class="meta">Compra prevista no plano de 2027 · dipirona 500 mg</div></div>
+          <div><div class="when">12/2026</div><div class="days">início previsto</div></div>
+          <div class="bar"><i style="width:60%"></i></div>
         </div>
         <div class="row">
-          <div><div class="org">Consórcio Intermunicipal de Saúde</div><div class="meta">Ata 00155/2025, 3 itens</div></div>
-          <div><div class="when">18/11</div><div class="days">em 56 dias</div></div>
-          <div class="bar"><i style="width:49%"></i></div>
-        </div>
-        <div class="row">
-          <div><div class="org">Hospital Universitário</div><div class="meta">Ata 00967/2025, 1 item</div></div>
-          <div><div class="when">09/12</div><div class="days">em 77 dias</div></div>
-          <div class="bar"><i style="width:67%"></i></div>
+          <div><div class="org">Hospital municipal (exemplo)</div><div class="meta">Registrou a R$&nbsp;8,40 o produto que você tem a R$&nbsp;5,90 em ata com adesão</div></div>
+          <div><div class="when">adesão</div><div class="days">possível</div></div>
+          <div class="bar"><i style="width:75%"></i></div>
         </div>
       </div>
     </section>
 
-    <section class="band" id="relatorio">
-      <h2>O que vem no relatório</h2>
-      <p class="intro">Uma visão da carteira pública da sua empresa, pronta para a reunião do comercial.</p>
+    <div class="sources" aria-label="Fontes dos dados">
+      <b>Fontes dos dados</b><span>Compras.gov.br</span><span>PNCP</span><span>ANVISA</span>
+    </div>
+
+    <section class="band first split" id="relatorio">
+      <header>
+        <h2>O que vem no relatório</h2>
+        <p class="intro">Uma visão da carteira pública da sua empresa, pronta para a reunião do comercial.</p>
+      </header>
+      <div>
       <div class="gets">
         <div>
-          <h3>As atas vigentes no seu CNPJ</h3>
-          <p>As atas registradas no Compras.gov.br, com número da ata, órgão comprador, itens, quantidade e valor registrado, e a data de término conferida ata por ata, inclusive prorrogações.</p>
+          <h3>Pregões abertos agora</h3>
+          <p>Pregões com prazo de proposta em aberto que incluem remédios que você já tem em ata, conferidos no edital: prazo, item, forma, unidade, plataforma e regras de ME/EPP. Mostra, item a item, o valor estimado pelo órgão ao lado do preço da sua ata.</p>
         </div>
         <div>
           <h3>Órgãos que podem aderir à sua ata</h3>
-          <p>Órgãos que compraram, nos últimos 12 meses, remédios que você tem em ata vigente pagando mais caro que o preço registrado — e que podem aderir à sua ata (Lei 14.133, art. 86), com órgão, remédio, preço pago, preço da sua ata e data da compra. A permissão de adesão é conferida no documento de cada ata.</p>
+          <p>Órgãos que compraram ou registraram em ata própria o mesmo produto (mesma substância, forma, unidade e marca) por preço maior que o da sua ata. A permissão de adesão é conferida no documento da ata (Lei 14.133, art. 86).</p>
         </div>
         <div>
-          <h3>O que os órgãos planejam comprar</h3>
-          <p>Os remédios da sua carteira que aparecem nos planos de contratação do próximo ano publicados no Compras.gov.br e no PNCP, com órgão, quantidade, valor estimado e data prevista para o início do processo. Antes de existir edital.</p>
+          <h3>Seu preço comparado às compras públicas</h3>
+          <p>Mediana e mínimo das compras públicas dos últimos 12 meses do mesmo remédio, na mesma apresentação, ao lado do preço das suas atas.</p>
         </div>
         <div>
-          <h3>O que vence primeiro</h3>
-          <p>A lista ordenada pela data de término, para saber onde a disputa volta a abrir e em que ordem.</p>
+          <h3>Compras previstas pelos órgãos</h3>
+          <p>Os remédios da sua carteira que aparecem nos Planos de Contratações Anuais publicados no Compras.gov.br e no PNCP, com órgão, quantidade, valor estimado e data prevista. Previsão do órgão, antes de existir edital.</p>
         </div>
         <div>
-          <h3>Onde você já vende</h3>
-          <p>Órgãos e estados da sua carteira, com o valor registrado em cada um. Útil para enxergar concentração e onde crescer.</p>
+          <h3>Alertas da Anvisa</h3>
+          <p>Medidas sanitárias publicadas pela Anvisa que envolvem remédios das suas atas, com o lote e o ato.</p>
         </div>
         <div>
-          <h3>O link oficial de cada ata</h3>
-          <p>Cada linha aponta para a ata no Portal Nacional de Contratações Públicas, para qualquer pessoa da equipe conferir em um clique.</p>
+          <h3>Suas atas vigentes</h3>
+          <p>As atas vigentes registradas no Compras.gov.br, conferidas ata por ata, com término (inclusive prorrogações), valor registrado e o link oficial no PNCP.</p>
         </div>
       </div>
-      <div class="sources" aria-label="Fontes dos dados">
-        <span>Compras.gov.br</span><span>PNCP</span><span>ANVISA</span>
+      <p class="more"><a href="relatorio-exemplo.pdf" target="_blank" rel="noopener">Ver um relatório de exemplo (PDF, dados fictícios)</a></p>
       </div>
     </section>
 
-    <section class="band" id="como-funciona">
-      <h2>Como funciona</h2>
-      <p class="intro">Sem cadastro e sem contrato de assinatura.</p>
+    <section class="band split" id="como-funciona">
+      <header>
+        <h2>Como funciona</h2>
+        <p class="intro">Sem cadastro e sem contrato de assinatura.</p>
+      </header>
       <ol class="steps">
         <li><h3>Você manda o CNPJ</h3><p>Por e-mail, para contato@licitafarma.com.br.</p></li>
         <li><h3>Recebe a amostra grátis</h3><p>Em até 1 dia útil, um exemplo real da carteira do seu CNPJ, conferido na fonte oficial.</p></li>
-        <li><h3>Pede o relatório completo, se servir</h3><p>A carteira inteira, entregue por e-mail em planilha e PDF.</p></li>
+        <li><h3>Pede o relatório completo, se servir</h3><p>Relatório único do seu CNPJ, entregue por e-mail em PDF e planilha, com os links das fontes.</p></li>
       </ol>
     </section>
 
     <section class="band" id="preco">
       <div class="price">
-        <div class="amount">R$ 490<small>por relatório de um CNPJ</small></div>
+        <div class="amount">R$&nbsp;490<small>por relatório de um CNPJ</small></div>
         <div>
           <ul>
             <li>A amostra com um exemplo real do seu CNPJ é grátis.</li>
-            <li>Relatório completo entregue por e-mail, em planilha e PDF, com as atas vigentes e as compras planejadas pelos órgãos para os remédios que você vende.</li>
+            <li>Relatório único, sem assinatura, entregue por e-mail em PDF e planilha, com todas as seções acima e os links das fontes.</li>
+            <li>Acompanhamento mensal e personalizações sob consulta, com o preço combinado antes.</li>
           </ul>
           <a class="btn" href="mailto:contato@licitafarma.com.br?subject=Relat%C3%B3rio%20completo&amp;body=CNPJ%20da%20empresa%3A%20">Pedir o relatório completo</a>
         </div>
       </div>
     </section>
 
-    <section class="band faq" aria-labelledby="faq-titulo">
-      <h2 id="faq-titulo">Perguntas frequentes</h2>
+    <section class="band faq split" aria-labelledby="faq-titulo">
+      <header>
+        <h2 id="faq-titulo">Perguntas frequentes</h2>
+      </header>
       <div class="qa">
       <details><summary>De onde vêm os dados?</summary><p>Dos portais oficiais: Compras.gov.br e Portal Nacional de Contratações Públicas (PNCP), além dos dados abertos da ANVISA. São informações públicas, conferidas antes de irem para o relatório.</p></details>
       <details><summary>Preciso dar alguma senha ou acesso?</summary><p>Não. Só o CNPJ da empresa.</p></details>
-      <details><summary>Isso substitui o sistema de licitações que já usamos?</summary><p>Não. É um relatório avulso sobre as atas que a sua empresa já tem, sem assinatura mensal.</p></details>
+      <details><summary>Isso substitui o sistema de licitações que já usamos?</summary><p>Não. É um relatório único sobre as atas que a sua empresa já tem, sem assinatura. Complementa a ferramenta que vocês já usam.</p></details>
+      <details><summary>Os números do relatório de exemplo são reais?</summary><p>Não. O exemplo usa empresa, órgãos, marcas e números fictícios, só para mostrar o formato. O relatório da sua empresa traz os dados públicos do seu CNPJ, conferidos na fonte.</p></details>
       <details><summary>Recebi um e-mail da Licitafarma. De onde veio o meu contato?</summary><p>De dados públicos. Não compramos listas. Para não receber mais mensagens, responda "sair" a qualquer e-mail nosso.</p></details>
       </div>
     </section>
